@@ -1,5 +1,0 @@
-<launch>
-    <param name="/print_freq" type="double" value="1.0"/>
-    <node name="sensor" pkg="blink" type="sensor" output="screen"/>
-    <node name="blink" pkg="blink" type="blink" output="screen"/>
-</launch>

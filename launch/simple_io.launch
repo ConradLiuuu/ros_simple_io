@@ -1,0 +1,5 @@
+<launch>
+    <param name="/print_freq" type="double" value="1.0"/>
+    <node name="sensor" pkg="ros_simple_io" type="sensor" output="screen"/>
+    <node name="led" pkg="ros_simple_io" type="led" output="screen"/>
+</launch>
