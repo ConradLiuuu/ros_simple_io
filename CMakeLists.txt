@@ -137,7 +137,7 @@ LINK_DIRECTORIES("usr/local/lib")
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(led src/led.cpp)
 add_executable(sensor src/sensor.cpp)
-
+add_executable(motor src/motor.cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -153,6 +153,9 @@ target_link_libraries(led
    ${catkin_LIBRARIES} wiringPi
  )
 target_link_libraries(sensor
+   ${catkin_LIBRARIES} wiringPi
+ )
+target_link_libraries(motor
    ${catkin_LIBRARIES} wiringPi
  )
 
