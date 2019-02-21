@@ -1,3 +1,2 @@
 # ros_simple_io 
-Use cpp write simple io package
-# ros-simple-io
+Use cpp to write simple io package
