@@ -6,33 +6,31 @@
 
 #define Sensor 4
 
-
 int main(int argc,char** argv)
 {
   ros::init(argc ,argv ,"sensor");
   ROS_INFO("Start RPI Seneor");
+  
   wiringPiSetup();
   pinMode(Sensor,INPUT);
 
-/*  while(1)
-  {
-    ROS_INFO("%d",i);
-  }*/
-  ros::NodeHandle n;
+  ros::NodeHandle nh;
+  
   double freq;
-  n.getParam("/print_freq",freq);
-  ros::Publisher sensorr_pub = n.advertise<std_msgs::Int8>("sensorr",1000,false);
-  //led_blink is topic name
+  nh.getParam("/print_freq", freq);
+  
+  ros::Publisher sensorr_pub = nh.advertise<std_msgs::Int8>("sensorr", 1000, false);
+
   ros::Rate r(10);
+  std_msgs::Int8 msg;
+  
   while (ros::ok())
   {
-    std_msgs::Int8 msgaa;
-    msgaa.data = digitalRead(Sensor);
-    ROS_INFO("sensor value is %d",msgaa.data);
-    sensorr_pub.publish(msgaa);
+    msg.data = digitalRead(Sensor);
+    ROS_INFO("sensor value is %d",msg.data);
+    sensorr_pub.publish(msg);
     ros::Duration(freq).sleep();
     ros::spinOnce();
-//    r.sleep();
   }
   return 0;
 }
