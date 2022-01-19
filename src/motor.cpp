@@ -4,29 +4,34 @@
 #include "wiringPi.h"
 #include "softPwm.h"
 #include <string.h>
+
 #define motor 1
+
 void callback(const std_msgs::Int8::ConstPtr& msg)
 {
-  if (msg -> data == 25){
-  ROS_INFO("motor open");
-  softPwmWrite(motor,25);
+  if (msg->data == 25)
+  {
+    ROS_INFO("motor open");
+    softPwmWrite(motor,25);
   }
-
-  if (msg -> data == 10){
-  ROS_INFO("motor close");
-  softPwmWrite(motor,10);
+  else if (msg->data == 10)
+  {
+    ROS_INFO("motor close");
+    softPwmWrite(motor,10);
   }
 }
+
 int main(int argc ,char** argv)
 {
-  ros::init(argc,argv,"motor");
+  ros::init(argc, argv, "motor");
   ROS_INFO("motor on");
+  
   wiringPiSetup();
   softPwmCreate (motor,0,200);
   delay(800);
 
   ros::NodeHandle nh;
-  ros::Subscriber sub = nh.subscribe("qq",10,callback);
+  ros::Subscriber sub = nh.subscribe("motor", 10, callback);
   ros::spin();  
   /*int degree = 20;
   ROS_INFO("motor open");
