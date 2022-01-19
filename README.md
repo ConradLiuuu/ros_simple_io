@@ -1,2 +1,2 @@
 # ros_simple_io 
-Use cpp to write simple io package
+This a pratice to use GPIO with **Wiring Pi** library.
